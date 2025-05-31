@@ -7,5 +7,5 @@ command_line = -m pytest
 directory = coverage_html_report
 
 [report]
-fail_under = 69
+fail_under = 100
 show_missing = True
