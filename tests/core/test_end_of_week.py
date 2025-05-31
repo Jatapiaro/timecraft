@@ -8,7 +8,7 @@ FIXED_TODAY = date(year=1998, month=6, day=11)
 
 
 class TestEndOfWeek:
-    @patch("timecraft.utils.date")
+    @patch("timecraftx.utils.date")
     def test_end_of_week(self, mock_date: MagicMock):
         mock_date.today.return_value = FIXED_TODAY
         mock_date.side_effect = lambda *args, **kwargs: date(*args, **kwargs)

@@ -1,8 +1,8 @@
 from datetime import date, timedelta
 from typing import Optional
 
-from timecraft.day import Day
-from timecraft.utils import normalize_week_inputs
+from timecraftx.day import Day
+from timecraftx.utils import normalize_week_inputs
 
 
 def start_of_week(

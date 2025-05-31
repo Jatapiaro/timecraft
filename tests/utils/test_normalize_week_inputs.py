@@ -3,14 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from pytest import raises
 
-from timecraft.day import Day
-from timecraft.utils import normalize_week_inputs
+from timecraftx.day import Day
+from timecraftx.utils import normalize_week_inputs
 
 FIXED_TODAY = date(year=2017, month=12, day=18)
 
 
 class TestNormalizeWeekInputs:
-    @patch("timecraft.utils.date")
+    @patch("timecraftx.utils.date")
     def test_validate_normalized_inputs(self, mock_date: MagicMock):
         mock_date.today.return_value = FIXED_TODAY
         mock_date.side_effect = lambda *args, **kwargs: date(*args, **kwargs)

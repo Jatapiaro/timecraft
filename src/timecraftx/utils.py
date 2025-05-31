@@ -1,7 +1,7 @@
 from datetime import date
 from typing import Optional, Tuple
 
-from timecraft.day import Day
+from timecraftx.day import Day
 
 VALID_WEEK_STARTS = {Day.MONDAY, Day.SUNDAY}
 

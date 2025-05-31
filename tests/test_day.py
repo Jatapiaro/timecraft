@@ -1,6 +1,6 @@
 from pytest import raises
 
-from timecraft.day import Day
+from timecraftx.day import Day
 
 
 class TestDay:

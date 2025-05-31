@@ -1,6 +1,6 @@
 from enum import Enum
 
-from timecraft.constants import WEEKDAY_NAME_TO_NUM
+from timecraftx.constants import WEEKDAY_NAME_TO_NUM
 
 
 class Day(Enum):

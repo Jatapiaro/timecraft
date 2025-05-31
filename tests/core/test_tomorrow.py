@@ -1,13 +1,13 @@
 from datetime import date
 from unittest.mock import MagicMock, patch
 
-from timecraft import tomorrow
+from timecraftx import tomorrow
 
 FIXED_TODAY = date(year=2017, month=12, day=18)
 
 
 class TestTomorrow:
-    @patch("timecraft.core.date")
+    @patch("timecraftx.core.date")
     def test_tomorrow(self, mock_date: MagicMock):
         mock_date.today.return_value = FIXED_TODAY
         mock_date.side_effect = lambda *args, **kwargs: date(*args, **kwargs)

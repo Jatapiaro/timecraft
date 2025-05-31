@@ -1,14 +1,14 @@
 from datetime import date
 from unittest.mock import MagicMock, patch
 
-from timecraft import start_of_week
-from timecraft.day import Day
+from timecraftx import start_of_week
+from timecraftx.day import Day
 
 FIXED_TODAY = date(year=1998, month=6, day=11)
 
 
 class TestStartOfWeek:
-    @patch("timecraft.utils.date")
+    @patch("timecraftx.utils.date")
     def test_start_of_week(self, mock_date: MagicMock):
         mock_date.today.return_value = FIXED_TODAY
         mock_date.side_effect = lambda *args, **kwargs: date(*args, **kwargs)
