@@ -1,4 +1,4 @@
-__version__ = "0.5.0"
+__version__ = "0.5.1"
 
 from timecraftx.core import end_of_week, start_of_week, tomorrow, yesterday
 from timecraftx.day import Day
