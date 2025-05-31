@@ -1,8 +1,8 @@
 from datetime import date
 from unittest.mock import MagicMock, patch
 
-from timecraft import end_of_week
-from timecraft.day import Day
+from timecraftx import end_of_week
+from timecraftx.day import Day
 
 FIXED_TODAY = date(year=1998, month=6, day=11)
 
