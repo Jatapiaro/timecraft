@@ -7,7 +7,7 @@ FIXED_TODAY = date(year=2017, month=12, day=18)
 
 
 class TestYesterday:
-    @patch("timecraftx.core.date")
+    @patch("timecraftx.utils.date")
     def test_yesterday(self, mock_date: MagicMock):
         mock_date.today.return_value = FIXED_TODAY
         mock_date.side_effect = lambda *args, **kwargs: date(*args, **kwargs)

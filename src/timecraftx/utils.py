@@ -1,11 +1,42 @@
 from datetime import date
-from typing import Optional, Tuple
+from functools import wraps
+from typing import Callable, Optional, Tuple
 
 from timecraftx.day import Day
 
 VALID_WEEK_STARTS = {Day.MONDAY, Day.SUNDAY}
 
 
+def ensure_date(func: Callable) -> Callable:
+    """
+    Decorator that ensures the 'from_date' argument is not None.
+
+    If 'from_date' is None when the decorated function is called,
+    it will be replaced with the current date (i.e., date.today()).
+
+    This is useful for functions that operate on dates and want to default
+    to "today" without repeating boilerplate checks.
+
+    Note:
+        The decorated function must accept 'from_date' as its first parameter.
+
+    Args:
+        func: A function that takes 'from_date' as its first positional or keyword argument.
+
+    Returns:
+        A wrapped function where 'from_date' defaults to today if not provided.
+    """
+
+    @wraps(func)
+    def wrapper(from_date: Optional[date] = None, *args, **kwargs):
+        if from_date is None:
+            from_date = date.today()
+        return func(from_date, *args, **kwargs)
+
+    return wrapper
+
+
+@ensure_date
 def normalize_week_inputs(
     from_date: Optional[date] = None, week_start: Day = Day.MONDAY
 ) -> Tuple[date, int]:
@@ -33,9 +64,6 @@ def normalize_week_inputs(
 
     if week_start not in VALID_WEEK_STARTS:
         raise ValueError("week_start must be Day.MONDAY or Day.SUNDAY")
-
-    if from_date is None:
-        from_date = date.today()
 
     weekday = from_date.weekday()
     if week_start == Day.SUNDAY:
