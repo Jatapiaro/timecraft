@@ -1,7 +1,7 @@
 # ⏳ Timecraftx
 
 **Lightweight, readable, and powerful date utilities for Python.**  
-Get common date calculations like `start_of_week`, `end_of_week`, `yesterday`, and `tomorrow`—with beautiful, clean code.
+Get common date calculations like `start_of_week`, `end_of_week`, `yesterday`, `tomorrow`, or even `next_friday` and `prev_monday` — with beautiful, clean code.
 
 ---
 
@@ -9,8 +9,9 @@ Get common date calculations like `start_of_week`, `end_of_week`, `yesterday`, a
 
 - ✅ `start_of_week()` and `end_of_week()` with customizable week start (Sunday or Monday)
 - ✅ `yesterday()` and `tomorrow()` with optional reference date
+- ✅ `next_weekday()` and `prev_weekday()` with helpers like `next_monday()`, `prev_sunday()`, etc.
 - ✅ Works with `date` objects directly (no timezone mess)
-- ✅ Enum-based safety for weekdays
+- ✅ Enum-based safety for weekdays via `Day`
 - ✅ Fully tested, no external dependencies
 
 ---
@@ -27,37 +28,90 @@ pip install timecraftx
 
 ```python
 from datetime import date
-from timecraftx import start_of_week, end_of_week, yesterday, tomorrow, Day
+from timecraftx import (
+    start_of_week, end_of_week, yesterday, tomorrow,
+    next_friday, prev_monday, Day
+)
 
-today = date(2024, 5, 30)
+today = date(2025, 6, 4)
 
-print(start_of_week(today))                          # Monday of the current week
-print(start_of_week(today, week_start=Day.SUNDAY))   # Sunday of the current week
+print(start_of_week(today))               # 2025-06-02 (Monday)
+print(end_of_week(today))                 # 2025-06-08 (Sunday if Monday is week start)
 
-print(end_of_week(today))                            # Saturday (if week starts Monday)
-print(yesterday(today))                              # 2024-05-29
-print(tomorrow(today))                               # 2024-05-31
+print(yesterday(today))                   # 2025-06-03
+print(tomorrow(today))                    # 2025-06-05
+
+print(next_friday(today))                 # 2025-06-06
+print(prev_monday(today))                 # 2025-06-02
 ```
 
 ---
 
 ## 📘 API Reference
 
-### `start_of_week(from_date: Optional[date] = None, week_start: Day = Day.MONDAY) -> date`
+### Week Utilities
 
-Returns the first day of the week for a given date. Defaults to today and Monday as the first day.
+#### `start_of_week(from_date: Optional[date] = None, week_start: Day = Day.MONDAY) -> date`
 
-### `end_of_week(from_date: Optional[date] = None, week_start: Day = Day.MONDAY) -> date`
+Returns the first day of the week. Defaults to today and Monday.
+
+#### `end_of_week(from_date: Optional[date] = None, week_start: Day = Day.MONDAY) -> date`
 
 Returns the last day of the week (6 days after `start_of_week`).
 
-### `tomorrow(from_date: Optional[date] = None) -> date`
+---
 
-Returns the next day.
+### Relative Days
 
-### `yesterday(from_date: Optional[date] = None) -> date`
+#### `yesterday(from_date: Optional[date] = None) -> date`
 
-Returns the previous day.
+Returns the day before the given date.
+
+#### `tomorrow(from_date: Optional[date] = None) -> date`
+
+Returns the day after the given date.
+
+---
+
+### Next Weekday Utilities
+
+#### `next_weekday(from_date: Optional[date] = None, target: Day = Day.MONDAY) -> date`
+
+Returns the next occurrence of a specific weekday.
+
+#### Day-specific helpers:
+- `next_monday()`
+- `next_tuesday()`
+- `next_wednesday()`
+- `next_thursday()`
+- `next_friday()`
+- `next_saturday()`
+- `next_sunday()`
+
+---
+
+### Previous Weekday Utilities
+
+#### `prev_weekday(from_date: Optional[date] = None, target: Day = Day.MONDAY) -> date`
+
+Returns the most recent past occurrence of a specific weekday.
+
+#### Day-specific helpers:
+- `prev_monday()`
+- `prev_tuesday()`
+- `prev_wednesday()`
+- `prev_thursday()`
+- `prev_friday()`
+- `prev_saturday()`
+- `prev_sunday()`
+
+---
+
+### Enum
+
+#### `Day`
+
+Enum values for each day of the week, from `Day.MONDAY` to `Day.SUNDAY`.
 
 ---
 

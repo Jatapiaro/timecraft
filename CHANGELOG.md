@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.0.1] - 2025-06-04
+
+### Changed
+- Updated the `README.md` to include examples for `next_weekday()` and the `Day` enum.
+- Improved quickstart and API reference sections for clarity and completeness.
+
 ## [1.0.0] - 2025-06-04
 
 ### Added
