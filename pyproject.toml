@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "timecraftx"
-version = "1.0.1"
+version = "1.0.2"
 description = "Lightweight utilities for working with dates and time in Python."
 readme = "README.md"
 authors = [{ name = "Jacobo Tapia", email = "jatapiaro@gmail.com" }]

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.0.2] - 2025-06-04
+
+### Added
+- New tests for `ensure_date` using the standardized `TestClass` style with `MagicMock` and `patch`.
+- Consistent test format matching the rest of the test suite.
+
 ## [1.0.1] - 2025-06-04
 
 ### Changed

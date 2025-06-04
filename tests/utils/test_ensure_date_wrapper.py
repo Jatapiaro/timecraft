@@ -1,7 +1,9 @@
 from datetime import date
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from timecraftx.utils import ensure_date
+
+FIXED_TODAY = date(year=2021, month=12, day=25)
 
 
 @ensure_date
@@ -9,14 +11,16 @@ def identity_function(from_date: date) -> date:
     return from_date
 
 
-def test_ensure_date_with_explicit_date():
-    fixed_date = date(2020, 1, 1)
-    result = identity_function(fixed_date)
-    assert result == fixed_date
+class TestEnsureDate:
+    @patch("timecraftx.utils.date")
+    def test_defaults_to_today(self, mock_date: MagicMock):
+        mock_date.today.return_value = FIXED_TODAY
+        mock_date.side_effect = lambda *args, **kwargs: date(*args, **kwargs)
 
+        result = identity_function()
+        assert result == FIXED_TODAY
 
-@patch("timecraftx.utils.date")
-def test_ensure_date_defaults_to_today(mock_date):
-    mock_date.today.return_value = date(2021, 12, 25)
-    result = identity_function(None)
-    assert result == date(2021, 12, 25)
+    def test_with_explicit_date(self):
+        custom_date = date(year=2020, month=1, day=1)
+        result = identity_function(custom_date)
+        assert result == custom_date
