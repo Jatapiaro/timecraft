@@ -149,4 +149,40 @@ def prev_weekday(from_date: Optional[date] = None, target: Day = Day.MONDAY) -> 
     current = from_date.weekday()
     target_day = target.value
     days_behind = (current - target_day + 7) % 7 or 7
+
     return from_date - timedelta(days=days_behind)
+
+
+def prev_monday(from_date: Optional[date] = None) -> date:
+    """Returns the previous Monday before the given date (or today if not provided)."""
+    return prev_weekday(from_date, Day.MONDAY)
+
+
+def prev_tuesday(from_date: Optional[date] = None) -> date:
+    """Returns the previous Tuesday before the given date (or today if not provided)."""
+    return prev_weekday(from_date, Day.TUESDAY)
+
+
+def prev_wednesday(from_date: Optional[date] = None) -> date:
+    """Returns the previous Wednesday before the given date (or today if not provided)."""
+    return prev_weekday(from_date, Day.WEDNESDAY)
+
+
+def prev_thursday(from_date: Optional[date] = None) -> date:
+    """Returns the previous Thursday before the given date (or today if not provided)."""
+    return prev_weekday(from_date, Day.THURSDAY)
+
+
+def prev_friday(from_date: Optional[date] = None) -> date:
+    """Returns the previous Friday before the given date (or today if not provided)."""
+    return prev_weekday(from_date, Day.FRIDAY)
+
+
+def prev_saturday(from_date: Optional[date] = None) -> date:
+    """Returns the previous Saturday before the given date (or today if not provided)."""
+    return prev_weekday(from_date, Day.SATURDAY)
+
+
+def prev_sunday(from_date: Optional[date] = None) -> date:
+    """Returns the previous Sunday before the given date (or today if not provided)."""
+    return prev_weekday(from_date, Day.SUNDAY)
